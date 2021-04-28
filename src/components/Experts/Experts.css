@@ -1,0 +1,14 @@
+footer.pagination  {
+    text-align: center;
+    margin: 1px auto;
+    width: 60%;
+    margin-top: 2rem;
+}
+
+@media(max-width: 24rem) {
+
+    footer.pagination  {
+    width: 100%;
+}
+
+}
