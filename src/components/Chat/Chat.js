@@ -1,21 +1,28 @@
-import React from "react";
-import { IconButton } from "@material-ui/core";
+import React, { useContext } from "react";
+import { Avatar, IconButton } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useEffect, useRef, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
-import FlipMove from "react-flip-move";
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "firebase";
+import db, { auth } from "../../assets/firebase";
+import Message from "./Message";
+import ChatContext from "../../context/ChatContext";
+import TimeAgo from "timeago-react";
 
 const Chat = ({ toggle, isOpen }) => {
   const endOfMessagesRef = useRef(null);
   const [input, setInput] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  // const [user] = useAuthState(auth);
-  const [recipient, setRecepient] = useState();
+  const [user] = useAuthState(auth);
+  const location = useLocation();
+  const history = useHistory();
+  const { chatId, recipient } = useContext(ChatContext);
+
+  console.log(recipient);
 
   const scrollToBottom = () => [
     endOfMessagesRef.current.scrollIntoView({
@@ -23,22 +30,95 @@ const Chat = ({ toggle, isOpen }) => {
       block: "start",
     }),
   ];
+
+  useEffect(() => {
+    db.collection("personalChats")
+      .doc(chatId)
+      .collection("messages")
+      .orderBy("timestamp", "asc")
+      .onSnapshot((snapshot) =>
+        setMessages(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, [chatId]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (input === "") {
+      alert("Enter Message");
+    } else {
+      db.collection("personalChats").doc(chatId).collection("messages").add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        message: input,
+        photo: user.photoURL,
+        displayName: user.displayName,
+      });
+
+      setInput("");
+      scrollToBottom();
+    }
+  };
+
   return (
     <ChatContainer isOpen={isOpen}>
-      <ChatHeader>
+      <Header>
         <ShowSidebarButton>
           <IconButton>
             <ArrowBackIosIcon onClick={toggle} />
           </IconButton>
         </ShowSidebarButton>
-        <ContentWrapper>
-          <h4>
-            To: <span>{recipient}</span>
-          </h4>
-          {/* <ChatDetails onClick={modalToggle} >Details</ChatDetails> */}
-        </ContentWrapper>
-      </ChatHeader>
-      <h1>CHAT</h1>
+
+        {recipient?.photoURL ? (
+          <Avatar src={recipient?.photoURL} />
+        ) : (
+          <Avatar>{recipient?.displayName[0]}</Avatar>
+        )}
+
+        <HeaderText>
+          <h3>{recipient?.displayName}</h3>
+          {recipient ? (
+            <p>
+              Last Active:{" "}
+              {recipient?.lastSeen?.toDate() ? (
+                // console.log(recipient.lastSeen.toDate())
+                <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
+              ) : (
+                "Unavialable"
+              )}
+            </p>
+          ) : (
+            <p>Loading Last Active....</p>
+          )}
+        </HeaderText>
+      </Header>
+
+      <ChatMessage>
+        {messages.map(({ id, data }) => (
+          <Message key={id} data={data} />
+        ))}
+
+        <EndOfMessage ref={endOfMessagesRef} />
+      </ChatMessage>
+
+      <ChatInput>
+        <form>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter your message."
+            type="text"
+          />
+          <button onClick={sendMessage}>Send Message</button>
+        </form>
+
+        <IconButton>
+          <SendIcon className="chat__mic" />
+        </IconButton>
+      </ChatInput>
     </ChatContainer>
   );
 };
@@ -49,7 +129,7 @@ const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0.65;
-  height: 100vh;
+  height: 90vh;
   background-color: white;
 
   @media screen and (max-width: 768px) {
@@ -58,30 +138,71 @@ const ChatContainer = styled.div`
   }
 `;
 
-const ChatHeader = styled.div`
-  padding: 20px;
-  align-items: center;
+const ChatMessage = styled.div`
+  flex: 1;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const ChatInput = styled.div`
   display: flex;
-  border-bottom: 1px solid lightgray;
+  align-items: center;
+  padding: 10px 20px;
+  border-top: 1px solid lightgray;
   background-color: #f5f5f5;
-  height: 80px;
+
+  > form {
+    flex: 1;
+  }
+
+  > form > input {
+    width: 98%;
+    outline-width: 0;
+    border: 1px solid lightgray;
+    border-radius: 999px;
+    padding: 5px;
+  }
+
+  > form > button {
+    display: none;
+  }
+`;
+
+const EndOfMessage = styled.div`
+  margin-bottom: 80px;
+`;
+
+const Header = styled.div`
+  background-color: #f5f5f5;
+  display: flex;
+  padding: 18px 20px;
+  justify-content: space-around;
+  border-bottom: 1px solid whitesmoke;
 `;
 
 const ShowSidebarButton = styled.div`
   display: none;
 
   @media screen and (max-width: 768px) {
-    display: block;
+    display: flex;
+    margin-right: 30px;
   }
 `;
 
-const ContentWrapper = styled.div`
-  display: flex;
+const HeaderText = styled.div`
+  margin-left: 15px;
   flex: 1;
-  justify-content: space-between;
-
-  > h4 {
-    font-weight: 500;
+  flex-direction: column;
+  > h3 {
+    margin-bottom: 3px;
+  }
+  > p {
+    font-size: 14px;
     color: gray;
   }
 `;

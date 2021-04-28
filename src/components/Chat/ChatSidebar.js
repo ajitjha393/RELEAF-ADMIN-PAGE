@@ -14,6 +14,7 @@ const ChatSidebar = ({ toggle, isOpen }) => {
   const userChatRef = db
     .collection("personalChats")
     .where("users", "array-contains", "Releaf Support");
+
   const [chatSnapshot] = useCollection(userChatRef);
   return (
     <Container isOpen={isOpen} onClick={toggle}>
@@ -29,12 +30,12 @@ const ChatSidebar = ({ toggle, isOpen }) => {
         </IconContainer>
       </Header>
 
-      <Search>
+      {/* <Search>
         <SearchInput placeholder="Search in chats" />
         <SearchIcon />
       </Search>
 
-      <SidebarButton>Start a new chat</SidebarButton>
+      <SidebarButton>Start a new chat</SidebarButton> */}
 
       {/* List of chats */}
       {chatSnapshot?.docs.map((chat) => (

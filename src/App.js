@@ -41,7 +41,6 @@ function App() {
             <Switch>
               <Route exact path="/experts" component={ExpertPage} />
               <Route exact path="/messages" component={ChatPage} />
-              <Route exact path="/chat/:id" component={ChatPage} />
             </Switch>
           </BrowserRouter>
         </div>

@@ -46,7 +46,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 const Nav = styled.div`
-  background: #37b0f7;
+  background: #14a8f3;
   //: "#15171c")}
   height: 80px;
   display: flex;
@@ -69,13 +69,14 @@ const NavIcons = styled(Link)`
 const NavText = styled.h1`
   margin-right: 2rem;
   color: white;
+  font-family: "Josefin Sans", sans-serif;
   @media screen and (max-width: 760px) {
     font-size: 1rem;
   }
 `;
 
 const SidebarNav = styled.nav`
-  background: #37b0f7;
+  background: #14a8f3;
   //: "#15171c")}
   width: 250px;
   height: 100vh;
