@@ -5,13 +5,14 @@ import db, { auth } from "./assets/firebase";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider } from "baseui";
-import Spinner from "./components/UI/Spinner/Spinner";
 import Login from "./components/Login";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ExpertPage from "./component-pages/ExpertPage";
 import ChatPage from "./component-pages/ChatPage";
 import firebase from "firebase";
+import Loader from "./components/Loader";
+import MeditationPage from "./component-pages/MeditationPage";
 const engine = new Styletron();
 
 function App() {
@@ -30,8 +31,10 @@ function App() {
     }
   }, [user]);
 
+  if (loading) return <Loader />;
+
   if (!user) return <Login />;
-  if (loading) return <Spinner />;
+
   return (
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
@@ -41,6 +44,7 @@ function App() {
             <Switch>
               <Route exact path="/experts" component={ExpertPage} />
               <Route exact path="/messages" component={ChatPage} />
+              <Route exact path="/meditation" component={MeditationPage} />
             </Switch>
           </BrowserRouter>
         </div>

@@ -5,7 +5,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import db, { auth } from "../../assets/firebase";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import SidebarChat from "./SidebarChat";
 
@@ -65,26 +65,26 @@ const Container = styled.div`
   }
 `;
 
-const Search = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  border-radius: 2px;
-`;
+// const Search = styled.div`
+//   display: flex;
+//   align-items: center;
+//   padding: 20px;
+//   border-radius: 2px;
+// `;
 
-const SearchInput = styled.input`
-  outline-width: 0;
-  border: none;
-  flex: 1;
-`;
+// const SearchInput = styled.input`
+//   outline-width: 0;
+//   border: none;
+//   flex: 1;
+// `;
 
-const SidebarButton = styled(Button)`
-  width: 100%;
-  &&& {
-    border-bottom: 1px solid whitesmoke;
-    border-top: 1px solid whitesmoke;
-  }
-`;
+// const SidebarButton = styled(Button)`
+//   width: 100%;
+//   &&& {
+//     border-bottom: 1px solid whitesmoke;
+//     border-top: 1px solid whitesmoke;
+//   }
+// `;
 
 const Header = styled.div`
   display: flex;

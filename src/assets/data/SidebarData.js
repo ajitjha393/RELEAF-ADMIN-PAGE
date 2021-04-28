@@ -3,7 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as GiIcons from "react-icons/gi";
-// import * as FiIcons from 'react-icons/fi'
+import * as GoIcons from "react-icons/go";
 
 export const SidebarData = [
   {
@@ -17,8 +17,13 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
   },
   {
-    title: "Mindfulness",
+    title: "Experts Approval",
     path: "/experts",
+    icon: <GoIcons.GoVerified />,
+  },
+  {
+    title: "Mindfulness",
+    path: "/meditation",
     icon: <GiIcons.GiMeditation />,
   },
   {

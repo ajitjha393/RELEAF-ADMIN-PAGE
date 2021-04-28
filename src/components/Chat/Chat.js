@@ -3,7 +3,6 @@ import { Avatar, IconButton } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useEffect, useRef, useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "firebase";
@@ -15,11 +14,10 @@ import TimeAgo from "timeago-react";
 const Chat = ({ toggle, isOpen }) => {
   const endOfMessagesRef = useRef(null);
   const [input, setInput] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
+
   const [messages, setMessages] = useState([]);
   const [user] = useAuthState(auth);
-  const location = useLocation();
-  const history = useHistory();
+
   const { chatId, recipient } = useContext(ChatContext);
 
   console.log(recipient);

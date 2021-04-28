@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { Avatar } from "@material-ui/core";
-
 import { useCollection } from "react-firebase-hooks/firestore";
 import styled from "styled-components";
 import db from "../../assets/firebase";
 import getRecipientDisplayName from "../../utils/getRecepientDisplayName";
-import { useHistory } from "react-router-dom";
 import ChatContext from "../../context/ChatContext";
 
 const SidebarChat = ({ id, users }) => {
