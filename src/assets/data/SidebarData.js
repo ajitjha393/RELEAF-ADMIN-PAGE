@@ -36,9 +36,9 @@ export const SidebarData = [
     path: "/messages",
     icon: <FaIcons.FaEnvelopeOpenText />,
   },
-  {
-    title: "Support",
-    path: "/support",
-    icon: <IoIcons.IoMdHelpCircle />,
-  },
+  // {
+  //   title: "Support",
+  //   path: "/support",
+  //   icon: <IoIcons.IoMdHelpCircle />,
+  // },
 ];
