@@ -6,6 +6,7 @@ import db from "../../assets/firebase";
 import getRecipientDisplayName from "../../utils/getRecepientDisplayName";
 import ChatContext from "../../context/ChatContext";
 import * as timeago from "timeago.js";
+import CryptoJS from "crypto-js";
 
 const SidebarChat = ({ id, users }) => {
   const [chat, setChat] = useState([]);
@@ -39,6 +40,8 @@ const SidebarChat = ({ id, users }) => {
     getRecipient(recipient);
   };
 
+  var bytes = CryptoJS.AES.decrypt(chat[0]?.data.message, "my-secret-key@123");
+  var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
   return (
     <Container onClick={enterChat}>
       {recipient?.photoURL ? (
@@ -51,9 +54,9 @@ const SidebarChat = ({ id, users }) => {
         <MessageSpan>
           <span>{chat[0]?.data.displayName}: </span>
           <p>
-            {chat[0]?.data.message.length > 10
-              ? `${chat[0]?.data.message}`.slice(0, 10) + "..."
-              : chat[0]?.data.message}
+            {decryptedData.length > 10
+              ? `${decryptedData}`.slice(0, 10) + "..."
+              : decryptedData}
           </p>
         </MessageSpan>
         <Time>

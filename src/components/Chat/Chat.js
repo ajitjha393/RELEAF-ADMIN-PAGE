@@ -10,6 +10,7 @@ import db, { auth } from "../../assets/firebase";
 import Message from "./Message";
 import ChatContext from "../../context/ChatContext";
 import TimeAgo from "timeago-react";
+import CryptoJS from "crypto-js";
 
 const Chat = ({ toggle, isOpen }) => {
   const endOfMessagesRef = useRef(null);
@@ -49,12 +50,15 @@ const Chat = ({ toggle, isOpen }) => {
     if (input === "") {
       alert("Enter Message");
     } else {
-      db.collection("personalChats").doc(chatId).collection("messages").add({
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        message: input,
-        photo: user.photoURL,
-        displayName: user.displayName,
-      });
+      db.collection("personalChats")
+        .doc(chatId)
+        .collection("messages")
+        .add({
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          message: CryptoJS.AES.encrypt(input, "my-secret-key@123").toString(),
+          photo: user.photoURL,
+          displayName: user.displayName,
+        });
 
       setInput("");
       scrollToBottom();

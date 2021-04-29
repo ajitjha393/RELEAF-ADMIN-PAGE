@@ -1,19 +1,23 @@
 import { Avatar } from "@material-ui/core";
-import { useAuthState } from "react-firebase-hooks/auth";
+import CryptoJS from "crypto-js";
 import styled from "styled-components";
-import { auth } from "../../assets/firebase";
 
 const Message = ({ data }) => {
   // console.log(data);
+  var bytes = CryptoJS.AES.decrypt(data.message, "my-secret-key@123");
+  var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+  console.log(decryptedData);
   return (
     <MessageContainer
-      sender={data.username === "Releaf Support" ? `true` : `false`}
+      sender={data.displayName === "Releaf Support" ? true : false}
     >
       <MessagePhoto
         src={data?.photo}
-        sender={"Releaf Suppot" === data.displayName ? `true` : `false`}
+        alt={data.displayName}
+        sender={"Releaf Suppot" === data.displayName ? true : false}
       />
-      <p>{data.message}</p>
+      {/* <p>{data.message}</p> */}
+      <p>{decryptedData}</p>
       <small>{new Date(data.timestamp?.toDate()).toLocaleString()}</small>
     </MessageContainer>
   );

@@ -10,6 +10,7 @@
 		"axios": "^0.21.1",
 		"baseui": "^9.112.0",
 		"better-react-spinkit": "^2.0.4",
+		"crypto-js": "^4.0.0",
 		"firebase": "^8.4.2",
 		"moment": "^2.29.1",
 		"react": "^17.0.2",
