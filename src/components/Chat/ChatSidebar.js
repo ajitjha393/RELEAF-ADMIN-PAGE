@@ -48,9 +48,9 @@ const ChatSidebar = ({ toggle, isOpen }) => {
 export default ChatSidebar;
 
 const Container = styled.div`
-  flex: 0.45;
+  flex: 0.35;
   border-right: 1px solid whitesmoke;
-  height: 100vh;
+  height: 80vh;
   flex-direction: column;
   overflow-y: scroll;
   ::-webkit-scrollbar {

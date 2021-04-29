@@ -70,7 +70,7 @@ const NavText = styled.h1`
   margin-right: 2rem;
   color: white;
   font-family: "Josefin Sans", sans-serif;
-  @media screen and (max-width: 760px) {
+  @media screen and (max-width: 480px) {
     font-size: 1rem;
   }
 `;
