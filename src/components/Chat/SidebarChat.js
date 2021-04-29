@@ -10,6 +10,7 @@ import CryptoJS from "crypto-js";
 
 const SidebarChat = ({ id, users }) => {
   const [chat, setChat] = useState([]);
+  const [decryptedData, setDecryptedData] = useState("");
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")
@@ -33,15 +34,23 @@ const SidebarChat = ({ id, users }) => {
         )
       );
   }, []);
-  console.log(chat[0]);
+
+  useEffect(() => {
+    if (chat[0]) {
+      setDecryptedData(
+        CryptoJS.AES.decrypt(
+          chat[0]?.data.message,
+          process.env.REACT_APP_CHAT_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8)
+      );
+    }
+  }, [chat]);
 
   const enterChat = () => {
     getChatId(id);
     getRecipient(recipient);
   };
 
-  var bytes = CryptoJS.AES.decrypt(chat[0]?.data.message, "my-secret-key@123");
-  var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
   return (
     <Container onClick={enterChat}>
       {recipient?.photoURL ? (
@@ -54,9 +63,11 @@ const SidebarChat = ({ id, users }) => {
         <MessageSpan>
           <span>{chat[0]?.data.displayName}: </span>
           <p>
-            {decryptedData.length > 10
-              ? `${decryptedData}`.slice(0, 10) + "..."
-              : decryptedData}
+            {decryptedData
+              ? decryptedData.length > 10
+                ? `${decryptedData}`.slice(0, 10) + "..."
+                : decryptedData
+              : "Loading"}
           </p>
         </MessageSpan>
         <Time>

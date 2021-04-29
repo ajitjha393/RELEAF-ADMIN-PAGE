@@ -4,7 +4,6 @@ import SendIcon from "@material-ui/icons/Send";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "firebase";
 import db, { auth } from "../../assets/firebase";
 import Message from "./Message";
@@ -17,7 +16,6 @@ const Chat = ({ toggle, isOpen }) => {
   const [input, setInput] = useState("");
 
   const [messages, setMessages] = useState([]);
-  const [user] = useAuthState(auth);
 
   const { chatId, recipient } = useContext(ChatContext);
 
@@ -55,9 +53,13 @@ const Chat = ({ toggle, isOpen }) => {
         .collection("messages")
         .add({
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          message: CryptoJS.AES.encrypt(input, "my-secret-key@123").toString(),
-          photo: user.photoURL,
-          displayName: user.displayName,
+          message: CryptoJS.AES.encrypt(
+            input,
+            process.env.REACT_APP_CHAT_SECRET_KEY
+          ).toString(),
+          photo:
+            "https://firebasestorage.googleapis.com/v0/b/help-releaf.appspot.com/o/releaf.jpg?alt=media&token=ad62568e-f7fa-4660-951d-93995eeb2a40",
+          displayName: "Releaf Support",
         });
 
       setInput("");

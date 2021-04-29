@@ -4,9 +4,12 @@ import styled from "styled-components";
 
 const Message = ({ data }) => {
   // console.log(data);
-  var bytes = CryptoJS.AES.decrypt(data.message, "my-secret-key@123");
+  var bytes = CryptoJS.AES.decrypt(
+    data.message,
+    process.env.REACT_APP_CHAT_SECRET_KEY
+  );
   var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-  console.log(decryptedData);
+  // console.log(decryptedData);
   return (
     <MessageContainer
       sender={data.displayName === "Releaf Support" ? true : false}

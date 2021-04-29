@@ -1,15 +1,14 @@
 import React from "react";
-import { Avatar, Button, IconButton } from "@material-ui/core";
+import { Avatar, IconButton } from "@material-ui/core";
 import styled from "styled-components";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import db, { auth } from "../../assets/firebase";
+import db from "../../assets/firebase";
 // import SearchIcon from "@material-ui/icons/Search";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import SidebarChat from "./SidebarChat";
+import logo from "../../assets/img/releaf.jpg";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const ChatSidebar = ({ toggle, isOpen }) => {
-  const [user] = useAuthState(auth);
   const userChatRef = db
     .collection("personalChats")
     .where("users", "array-contains", "Releaf Support");
@@ -18,20 +17,13 @@ const ChatSidebar = ({ toggle, isOpen }) => {
   return (
     <Container isOpen={isOpen} onClick={toggle}>
       <Header>
-        <UserAvatar src={user.photoURL} />
+        <UserAvatar src={logo} />
         <IconContainer>
           <IconButton>
             <ArrowBackIosIcon onClick={toggle} />
           </IconButton>
         </IconContainer>
       </Header>
-
-      {/* <Search>
-        <SearchInput placeholder="Search in chats" />
-        <SearchIcon />
-      </Search>
-
-      <SidebarButton>Start a new chat</SidebarButton> */}
 
       {/* List of chats */}
       {chatSnapshot?.docs.map((chat) => (
@@ -60,27 +52,6 @@ const Container = styled.div`
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   }
 `;
-
-// const Search = styled.div`
-//   display: flex;
-//   align-items: center;
-//   padding: 20px;
-//   border-radius: 2px;
-// `;
-
-// const SearchInput = styled.input`
-//   outline-width: 0;
-//   border: none;
-//   flex: 1;
-// `;
-
-// const SidebarButton = styled(Button)`
-//   width: 100%;
-//   &&& {
-//     border-bottom: 1px solid whitesmoke;
-//     border-top: 1px solid whitesmoke;
-//   }
-// `;
 
 const Header = styled.div`
   display: flex;
