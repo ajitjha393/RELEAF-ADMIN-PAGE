@@ -2,9 +2,11 @@ import { Container, Grid, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as ImIcons from "react-icons/im";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import db from "../assets/firebase";
 import Loader from "../components/Loader";
+toast.configure();
 const MeditationPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -36,16 +38,19 @@ const MeditationPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    db.collection("podcasts").add({
-      title,
-      description,
-      author,
-      image,
-      rss,
-      redirect,
-      link,
-      support,
-    });
+    db.collection("podcasts")
+      .add({
+        title,
+        description,
+        author,
+        image,
+        rss,
+        redirect,
+        link,
+        support,
+      })
+      .then(toast.success("Uploaded!"))
+      .catch((err) => toast.error(err));
   };
 
   return (

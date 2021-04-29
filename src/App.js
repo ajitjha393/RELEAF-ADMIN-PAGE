@@ -14,6 +14,7 @@ import firebase from "firebase";
 import Loader from "./components/Loader";
 import MeditationPage from "./component-pages/MeditationPage";
 import ChatroomPage from "./component-pages/ChatroomPage";
+import OverviewPage from "./component-pages/OverviewPage";
 const engine = new Styletron();
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <BrowserRouter>
             <Sidebar />
             <Switch>
+              <Route exact path="/" component={OverviewPage} />
               <Route exact path="/experts" component={ExpertPage} />
               <Route exact path="/messages" component={ChatPage} />
               <Route exact path="/meditation" component={MeditationPage} />
