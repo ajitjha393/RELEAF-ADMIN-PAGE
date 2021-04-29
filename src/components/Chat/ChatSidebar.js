@@ -1,7 +1,6 @@
 import React from "react";
 import { Avatar, Button, IconButton } from "@material-ui/core";
 import styled from "styled-components";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import db, { auth } from "../../assets/firebase";
@@ -23,9 +22,6 @@ const ChatSidebar = ({ toggle, isOpen }) => {
         <IconContainer>
           <IconButton>
             <ArrowBackIosIcon onClick={toggle} />
-          </IconButton>
-          <IconButton>
-            <MoreVertIcon />
           </IconButton>
         </IconContainer>
       </Header>
@@ -106,4 +102,10 @@ const UserAvatar = styled(Avatar)`
   }
 `;
 
-const IconContainer = styled.div``;
+const IconContainer = styled.div`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+`;
