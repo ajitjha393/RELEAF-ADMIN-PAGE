@@ -11,11 +11,11 @@ export const SidebarData = [
     path: "/",
     icon: <AiIcons.AiFillHome />,
   },
-  {
-    title: "Reports",
-    path: "/user/reports",
-    icon: <IoIcons.IoIosPaper />,
-  },
+  // {
+  //   title: "Reports",
+  //   path: "/user/reports",
+  //   icon: <IoIcons.IoIosPaper />,
+  // },
   {
     title: "Experts Approval",
     path: "/experts",
@@ -28,7 +28,7 @@ export const SidebarData = [
   },
   {
     title: "Chatroom",
-    path: "/user/chatroom",
+    path: "/chatroom",
     icon: <IoIcons.IoMdPeople />,
   },
   {

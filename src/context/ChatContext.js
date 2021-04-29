@@ -1,5 +1,5 @@
 import React from "react";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 const ChatContext = createContext();
 const ChatContextProvider = (props) => {
   const [chatId, setChatId] = useState(null);

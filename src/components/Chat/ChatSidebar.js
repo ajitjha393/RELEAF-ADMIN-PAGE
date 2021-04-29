@@ -14,6 +14,7 @@ const ChatSidebar = ({ toggle, isOpen }) => {
     .where("users", "array-contains", "Releaf Support");
 
   const [chatSnapshot] = useCollection(userChatRef);
+
   return (
     <Container isOpen={isOpen} onClick={toggle}>
       <Header>
@@ -38,7 +39,7 @@ export default ChatSidebar;
 const Container = styled.div`
   flex: 0.35;
   border-right: 1px solid whitesmoke;
-  height: 80vh;
+  height: 90vh;
   flex-direction: column;
   overflow-y: scroll;
   ::-webkit-scrollbar {
@@ -49,6 +50,7 @@ const Container = styled.div`
 
   @media screen and (max-width: 768px) {
     flex: 1;
+    height: 80vh;
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   }
 `;

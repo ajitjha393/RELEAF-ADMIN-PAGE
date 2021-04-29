@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Chat from "../components/Chat/Chat";
 import ChatSidebar from "../components/Chat/ChatSidebar";
-import Welcome from "../components/Chat/Welcome";
+import Welcome from "../components/Welcome";
 import ChatContext from "../context/ChatContext";
 
 const ChatPage = () => {

@@ -33,7 +33,7 @@ const SidebarChat = ({ id, users }) => {
           }))
         )
       );
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (chat[0]) {

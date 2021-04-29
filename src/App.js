@@ -13,6 +13,7 @@ import ChatPage from "./component-pages/ChatPage";
 import firebase from "firebase";
 import Loader from "./components/Loader";
 import MeditationPage from "./component-pages/MeditationPage";
+import ChatroomPage from "./component-pages/ChatroomPage";
 const engine = new Styletron();
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
               <Route exact path="/experts" component={ExpertPage} />
               <Route exact path="/messages" component={ChatPage} />
               <Route exact path="/meditation" component={MeditationPage} />
+              <Route exact path="/chatroom" component={ChatroomPage} />
+              <Route exact path="/chatroom/:id" component={ChatroomPage} />
             </Switch>
           </BrowserRouter>
         </div>

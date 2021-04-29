@@ -24,11 +24,12 @@ const WelcomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0.65;
-  height: 100vh;
+  height: 90vh;
   background-color: #e3eff6;
 
   @media screen and (max-width: 768px) {
     flex: 1;
+    height: 80vh;
     display: ${({ isOpen }) => (isOpen ? "none" : "flex")};
   }
 `;
