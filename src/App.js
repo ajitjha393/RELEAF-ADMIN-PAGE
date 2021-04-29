@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      db.collection("users").doc(user.uid).set(
+      db.collection("users").doc("ejUsj02vIVb0BaTFQmOqFmzeU8J3").set(
         {
           displayName: "Releaf Support",
           lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
