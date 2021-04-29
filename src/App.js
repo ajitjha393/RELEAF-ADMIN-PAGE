@@ -24,7 +24,8 @@ function App() {
         {
           displayName: "Releaf Support",
           lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
-          photoURL: user.photoURL,
+          photoURL:
+            "https://firebasestorage.googleapis.com/v0/b/help-releaf.appspot.com/o/releaf.jpg?alt=media&token=ad62568e-f7fa-4660-951d-93995eeb2a40",
         },
         { merge: true }
       );
