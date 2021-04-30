@@ -15,7 +15,7 @@ const Message = ({ data }) => {
       sender={data.displayName === "Releaf Support" ? true : false}
     >
       <MessagePhoto
-        src={data?.photo}
+        src={data?.photoURL}
         alt={data.displayName}
         sender={"Releaf Suppot" === data.displayName ? true : false}
       />

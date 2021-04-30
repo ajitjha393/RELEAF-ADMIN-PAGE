@@ -5,7 +5,7 @@ import styled from "styled-components";
 import CryptoJS from "crypto-js";
 
 const ChatroomMessage = forwardRef(
-  ({ id, contents: { timestamp, message, photo, username } }, ref) => {
+  ({ id, contents: { timestamp, message, photoURL, username } }, ref) => {
     var bytes = CryptoJS.AES.decrypt(
       message,
       process.env.REACT_APP_CHAT_SECRET_KEY
@@ -17,7 +17,8 @@ const ChatroomMessage = forwardRef(
         sender={"Releaf Support" === username ? true : false}
       >
         <MessagePhoto
-          src={photo}
+          src={photoURL}
+          alt={username[0]}
           sender={"Releaf Support" === username ? true : false}
         />
         {console.log(username)}
