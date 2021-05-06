@@ -11,7 +11,7 @@ const MeditationPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
-  const [image, setImage] = useState("");
+  const [img, setImg] = useState("");
   const [rss, setRss] = useState("");
   const [redirect, setRedirect] = useState("");
   const [link, setLink] = useState("");
@@ -43,7 +43,7 @@ const MeditationPage = () => {
         title,
         description,
         author,
-        image,
+        img,
         rss,
         redirect,
         link,
@@ -90,8 +90,8 @@ const MeditationPage = () => {
                     <TextField
                       {...additionalProps}
                       label="Image"
-                      value={image}
-                      onChange={(e) => setImage(e.target.value)}
+                      value={img}
+                      onChange={(e) => setImg(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={6}>
