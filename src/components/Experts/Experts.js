@@ -11,7 +11,7 @@ import { Tabs, Tab, FILL } from 'baseui/tabs-motion'
 import axios from 'axios'
 import './Experts.css'
 
-const BASE_ENDPOINT = 'http://localhost:5000'
+const BASE_ENDPOINT = 'https://help-releaf.herokuapp.com'
 
 const Experts = () => {
 	const [verifiedExperts, setVerifiedExperts] = useState([])
@@ -94,12 +94,9 @@ const Experts = () => {
 									],
 									[
 										'Profile Picture',
-										`${BASE_ENDPOINT}/${exp.profilePicture}`,
+										`${exp.profilePicture}`,
 									],
-									[
-										'Resume',
-										`${BASE_ENDPOINT}/${exp.resume}`,
-									],
+									['Resume', `${exp.resume}`],
 								]}
 							/>
 							<Button

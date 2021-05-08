@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { ChatContextProvider } from "./context/ChatContext";
 
 ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById('root')
+  <ChatContextProvider>
+    <App />
+  </ChatContextProvider>,
+
+  document.getElementById("root")
 );
