@@ -21,7 +21,7 @@ const Sidebar = () => {
           <NavIcons to="#">
             <FaIcons.FaBars onClick={showSiderbar} />
           </NavIcons>
-          <NavText>Releaf Admin Dashboard</NavText>
+          <NavText>Minderse Admin Dashboard</NavText>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

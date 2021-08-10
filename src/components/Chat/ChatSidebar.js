@@ -11,7 +11,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 const ChatSidebar = ({ toggle, isOpen }) => {
   const userChatRef = db
     .collection("personalChats")
-    .where("users", "array-contains", "Releaf Support");
+    .where("users", "array-contains", "Minderse Support");
 
   const [chatSnapshot] = useCollection(userChatRef);
 

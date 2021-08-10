@@ -24,7 +24,7 @@ const ChatroomSiebar = ({ isOpen, toggle }) => {
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
       <SidebarHeader>
         <SidebarAvatar src={logo} />
-        <h3>Releaf Support</h3>
+        <h3>Minderse Support</h3>
 
         <SidebarIcon variant="outlined">
           <ArrowBackIosIcon />

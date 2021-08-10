@@ -5,7 +5,7 @@ const ChatroomModal = ({ modalToggle, modalOpen, chatName, description }) => {
     <ChatModalContainer isOpen={modalOpen}>
       <ChatModalContent>
         <ChatModalButton onClick={modalToggle}>&times;</ChatModalButton>
-        <h2>Welcome to Releaf Chat Room</h2>
+        <h2>Welcome to Minderse Chat Room</h2>
         <br />
         Chat Room Name: <strong>{chatName}</strong>
         <br />

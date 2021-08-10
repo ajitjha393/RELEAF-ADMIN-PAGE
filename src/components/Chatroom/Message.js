@@ -14,14 +14,15 @@ const ChatroomMessage = forwardRef(
     return (
       <MessageContainer
         ref={ref}
-        sender={"Releaf Support" === username ? true : false}
+        sender={"Minderse Support" === username ? true : false}
       >
         <MessagePhoto
           src={photoURL}
           alt={username[0]}
-          sender={"Releaf Support" === username ? true : false}
+          sender={"Minderse Support" === username ? true : false}
         />
         {console.log(username)}
+        {/* <p>{message}</p> */}
         <p>{decryptedData}</p>
         <small>{new Date(timestamp?.toDate()).toLocaleString()}</small>
       </MessageContainer>

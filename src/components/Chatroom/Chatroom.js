@@ -65,7 +65,7 @@ const Chatroom = ({ toggle, isOpen }) => {
             input,
             process.env.REACT_APP_CHAT_SECRET_KEY
           ).toString(),
-          username: "Releaf Support",
+          username: "Minderse Support",
           photoURL:
             "https://firebasestorage.googleapis.com/v0/b/help-releaf.appspot.com/o/releaf.jpg?alt=media&token=ad62568e-f7fa-4660-951d-93995eeb2a40",
         });
