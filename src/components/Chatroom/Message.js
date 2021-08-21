@@ -14,12 +14,12 @@ const ChatroomMessage = forwardRef(
     return (
       <MessageContainer
         ref={ref}
-        sender={"Minderse Support" === username ? true : false}
+        sender={"Releaf Support" === username ? true : false}
       >
         <MessagePhoto
           src={photoURL}
           alt={username[0]}
-          sender={"Minderse Support" === username ? true : false}
+          sender={"Releaf Support" === username ? true : false}
         />
         {console.log(username)}
         {/* <p>{message}</p> */}

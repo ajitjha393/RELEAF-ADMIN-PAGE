@@ -12,7 +12,7 @@ const Welcome = ({ isOpen, toggle }) => {
             <ArrowBackIosIcon onClick={toggle} />
           </IconButton>
         </ShowSidebarButton>
-        <h4>Welcome To The Minderse Chat</h4>
+        <h4>Welcome To The Releaf Chat</h4>
       </WelcomeHeader>
     </WelcomeContainer>
   );

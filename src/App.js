@@ -24,7 +24,7 @@ function App() {
     if (user) {
       db.collection("users").doc("ejUsj02vIVb0BaTFQmOqFmzeU8J3").set(
         {
-          displayName: "Minderse Support",
+          displayName: "Releaf Support",
           lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
           photoURL:
             "https://firebasestorage.googleapis.com/v0/b/help-releaf.appspot.com/o/releaf.jpg?alt=media&token=ad62568e-f7fa-4660-951d-93995eeb2a40",

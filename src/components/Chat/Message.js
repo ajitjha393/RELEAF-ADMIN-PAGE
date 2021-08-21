@@ -12,12 +12,12 @@ const Message = ({ data }) => {
   // console.log(decryptedData);
   return (
     <MessageContainer
-      sender={data.displayName === "Minderse Support" ? true : false}
+      sender={data.displayName === "Releaf Support" ? true : false}
     >
       <MessagePhoto
         src={data?.photoURL}
         alt={data.displayName}
-        sender={"Minderse Suppot" === data.displayName ? true : false}
+        sender={"Releaf Suppot" === data.displayName ? true : false}
       />
       {/* s<p>{data.message}</p> */}
       <p>{decryptedData}</p>
